@@ -119,6 +119,7 @@ public class Caregiver {
                     } else {
                         this.salt = salt;
                         this.hash = hash;
+                        cm.closeConnection();
                         return new Caregiver(this);
                     }
                 }

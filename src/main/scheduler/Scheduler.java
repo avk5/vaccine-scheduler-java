@@ -120,7 +120,6 @@ public class Scheduler {
             System.out.println("Created user " + username);
         } catch (SQLException e) {
             System.out.println("Failed to create user.");
-            e.printStackTrace();
         }
     }
 
@@ -137,7 +136,6 @@ public class Scheduler {
             return resultSet.isBeforeFirst();
         } catch (SQLException e) {
             System.out.println("Error occurred when checking username");
-            e.printStackTrace();
         } finally {
             cm.closeConnection();
         }
@@ -168,7 +166,6 @@ public class Scheduler {
             caregiver = new Caregiver.CaregiverGetter(username, password).get();
         } catch (SQLException e) {
             System.out.println("Login failed.");
-            e.printStackTrace();
         }
         // check if the login was successful
         if (caregiver == null) {
@@ -208,7 +205,6 @@ public class Scheduler {
             System.out.println("Please enter a valid date!");
         } catch (SQLException e) {
             System.out.println("Error occurred when uploading availability");
-            e.printStackTrace();
         }
     }
 
@@ -235,7 +231,6 @@ public class Scheduler {
             vaccine = new Vaccine.VaccineGetter(vaccineName).get();
         } catch (SQLException e) {
             System.out.println("Error occurred when adding doses");
-            e.printStackTrace();
         }
         // check 3: if getter returns null, it means that we need to create the vaccine and insert it into the Vaccines
         //          table
@@ -245,7 +240,6 @@ public class Scheduler {
                 vaccine.saveToDB();
             } catch (SQLException e) {
                 System.out.println("Error occurred when adding doses");
-                e.printStackTrace();
             }
         } else {
             // if the vaccine is not null, meaning that the vaccine already exists in our table
@@ -253,7 +247,6 @@ public class Scheduler {
                 vaccine.increaseAvailableDoses(doses);
             } catch (SQLException e) {
                 System.out.println("Error occurred when adding doses");
-                e.printStackTrace();
             }
         }
         System.out.println("Doses updated!");
