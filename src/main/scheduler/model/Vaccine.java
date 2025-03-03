@@ -133,6 +133,7 @@ public class Vaccine {
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     this.availableDoses = resultSet.getInt("Doses");
+                    cm.closeConnection();
                     return new Vaccine(this);
                 }
                 return null;
